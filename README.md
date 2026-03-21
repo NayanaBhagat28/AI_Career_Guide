@@ -33,3 +33,55 @@ A[User Input] --> B[AI Processing]
 B --> C[Career Suggestions]
 C --> D[Learning Roadmap]
 D --> E[User Growth 🚀]
+
+🛠️ Tech Stack
+Category	Technology
+Frontend	React.js
+Backend	Node.js / Express
+AI	OpenAI API
+Styling	Tailwind CSS
+Deployment	Vercel / Netlify
+📸 Screenshots
+
+✨ Add your UI screenshots here
+
+⚙️ Installation
+git clone https://github.com/NayanaBhagat28/AI-Career-Guide.git
+cd AI-Career-Guide
+npm install
+npm run dev
+🌍 Live Demo
+
+🔗 Coming Soon
+
+🚀 Future Scope
+🤖 AI Mentor Chatbot
+📄 Resume Analyzer
+📊 Career Progress Dashboard
+🌐 Multi-language Support
+🏆 Why This Project Stands Out
+
+✔ Real-world problem solving
+✔ AI integration
+✔ Clean UI/UX
+✔ Scalable architecture
+
+🤝 Contributing
+
+Contributions are welcome!
+Feel free to fork, improve, and submit a PR 🚀
+
+ Author
+
+Nayana Bhagath
+🌐 GitHub: https://github.com/NayanaBhagat28
+
+⭐ Support
+
+If you like this project:
+
+👉 Star the repo
+👉 Share with others
+👉 Give feedback
+
+---
