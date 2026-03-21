@@ -302,3 +302,44 @@ export interface InternshipRecommendation {
 export interface InternshipRecommendations {
   recommendations: InternshipRecommendation[];
 }
+
+export type GenerateCareerPathBodySkillLevel =
+  (typeof GenerateCareerPathBodySkillLevel)[keyof typeof GenerateCareerPathBodySkillLevel];
+
+export const GenerateCareerPathBodySkillLevel = {
+  beginner: "beginner",
+  intermediate: "intermediate",
+  advanced: "advanced",
+} as const;
+
+export type GenerateCareerPathBodyGoal =
+  (typeof GenerateCareerPathBodyGoal)[keyof typeof GenerateCareerPathBodyGoal];
+
+export const GenerateCareerPathBodyGoal = {
+  job: "job",
+  startup: "startup",
+  freelancing: "freelancing",
+} as const;
+
+export interface GenerateCareerPathBody {
+  interests: string;
+  skillLevel: GenerateCareerPathBodySkillLevel;
+  goal?: GenerateCareerPathBodyGoal;
+}
+
+export interface CareerOption {
+  title: string;
+  description: string;
+  skills: string[];
+  roadmap: string[];
+  tools: string[];
+  timeline: string;
+  demandLevel: string;
+  averageSalary: string;
+  emoji: string;
+}
+
+export interface CareerPathResult {
+  careers: CareerOption[];
+  generatedAt: string;
+}

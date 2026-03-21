@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/career-guide/"
+title = "AI Career Guide"
+version = "1.0.0"
+id = "artifacts/career-guide"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/career-guide/" ]
+localPort = 22925
+
+[services.development]
+run = "pnpm --filter @workspace/career-guide run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/career-guide", "run", "build" ]
+publicDir = "artifacts/career-guide/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22925"
+BASE_PATH = "/career-guide/"

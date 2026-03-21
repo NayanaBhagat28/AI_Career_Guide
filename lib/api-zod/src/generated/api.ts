@@ -391,6 +391,32 @@ export const GetSkillGapAnalysisBody = zod.object({
 });
 
 /**
+ * @summary Generate a personalized AI career path
+ */
+export const GenerateCareerPathBody = zod.object({
+  interests: zod.string(),
+  skillLevel: zod.enum(["beginner", "intermediate", "advanced"]),
+  goal: zod.enum(["job", "startup", "freelancing"]).optional(),
+});
+
+export const GenerateCareerPathResponse = zod.object({
+  careers: zod.array(
+    zod.object({
+      title: zod.string(),
+      description: zod.string(),
+      skills: zod.array(zod.string()),
+      roadmap: zod.array(zod.string()),
+      tools: zod.array(zod.string()),
+      timeline: zod.string(),
+      demandLevel: zod.string(),
+      averageSalary: zod.string(),
+      emoji: zod.string(),
+    }),
+  ),
+  generatedAt: zod.date(),
+});
+
+/**
  * @summary Get AI internship recommendations based on profile
  */
 export const GetInternshipRecommendationsResponse = zod.object({

@@ -426,6 +426,25 @@ paths:
           content:
             text/event-stream: {}
 
+  /career-guide/generate:
+    post:
+      operationId: generateCareerPath
+      tags: [openai]
+      summary: Generate a personalized AI career path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GenerateCareerPathBody"
+      responses:
+        "200":
+          description: Generated career path result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CareerPathResult"
+
   /advisor/recommendations:
     get:
       operationId: getInternshipRecommendations
@@ -836,3 +855,70 @@ components:
         - reasoning
         - requiredSkills
         - applicationTip
+
+    GenerateCareerPathBody:
+      type: object
+      properties:
+        interests:
+          type: string
+        skillLevel:
+          type: string
+          enum: [beginner, intermediate, advanced]
+        goal:
+          type: string
+          enum: [job, startup, freelancing]
+      required:
+        - interests
+        - skillLevel
+
+    CareerPathResult:
+      type: object
+      properties:
+        careers:
+          type: array
+          items:
+            $ref: "#/components/schemas/CareerOption"
+        generatedAt:
+          type: string
+          format: date-time
+      required:
+        - careers
+        - generatedAt
+
+    CareerOption:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        skills:
+          type: array
+          items:
+            type: string
+        roadmap:
+          type: array
+          items:
+            type: string
+        tools:
+          type: array
+          items:
+            type: string
+        timeline:
+          type: string
+        demandLevel:
+          type: string
+        averageSalary:
+          type: string
+        emoji:
+          type: string
+      required:
+        - title
+        - description
+        - skills
+        - roadmap
+        - tools
+        - timeline
+        - demandLevel
+        - averageSalary
+        - emoji

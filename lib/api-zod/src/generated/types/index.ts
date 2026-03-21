@@ -8,6 +8,8 @@
 
 export * from "./application";
 export * from "./applicationStatus";
+export * from "./careerOption";
+export * from "./careerPathResult";
 export * from "./createApplicationBody";
 export * from "./createApplicationBodyStatus";
 export * from "./createOpenaiConversationBody";
@@ -16,6 +18,9 @@ export * from "./createProjectBodyStatus";
 export * from "./createSkillBody";
 export * from "./createSkillBodyCategory";
 export * from "./createSkillBodyProficiency";
+export * from "./generateCareerPathBody";
+export * from "./generateCareerPathBodyGoal";
+export * from "./generateCareerPathBodySkillLevel";
 export * from "./healthStatus";
 export * from "./internshipRecommendation";
 export * from "./internshipRecommendations";

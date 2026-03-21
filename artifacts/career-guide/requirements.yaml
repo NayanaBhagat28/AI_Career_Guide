@@ -1,0 +1,16 @@
+packages:
+  "framer-motion": "For smooth cinematic entry and hover animations"
+  "clsx": "For conditional class names"
+  "tailwind-merge": "For merging tailwind classes safely"
+  "jspdf": "For generating PDF career reports"
+  "html2canvas": "For capturing result section to PDF"
+
+images:
+  - path: "artifacts/career-guide/public/images/hero-glow.png"
+    description: "Abstract cinematic 3D glassmorphism shape with deep electric purple and navy blue gradients, highly polished, premium dark mode aesthetic"
+    aspect_ratio: "16:9"
+
+notes:
+  - Application uses window.localStorage for basic user persistence
+  - The entire application is forced into a dark-mode theme to match the premium cinematic aesthetic
+  - Uses html2canvas + jspdf for client-side PDF generation

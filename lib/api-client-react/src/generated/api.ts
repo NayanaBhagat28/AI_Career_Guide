@@ -18,10 +18,12 @@ import type {
 
 import type {
   Application,
+  CareerPathResult,
   CreateApplicationBody,
   CreateOpenaiConversationBody,
   CreateProjectBody,
   CreateSkillBody,
+  GenerateCareerPathBody,
   HealthStatus,
   InternshipRecommendations,
   OpenaiConversation,
@@ -1960,6 +1962,92 @@ export const useGetSkillGapAnalysis = <
   TContext
 > => {
   return useMutation(getGetSkillGapAnalysisMutationOptions(options));
+};
+
+/**
+ * @summary Generate a personalized AI career path
+ */
+export const getGenerateCareerPathUrl = () => {
+  return `/api/career-guide/generate`;
+};
+
+export const generateCareerPath = async (
+  generateCareerPathBody: GenerateCareerPathBody,
+  options?: RequestInit,
+): Promise<CareerPathResult> => {
+  return customFetch<CareerPathResult>(getGenerateCareerPathUrl(), {
+    ...options,
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...options?.headers },
+    body: JSON.stringify(generateCareerPathBody),
+  });
+};
+
+export const getGenerateCareerPathMutationOptions = <
+  TError = ErrorType<unknown>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof generateCareerPath>>,
+    TError,
+    { data: BodyType<GenerateCareerPathBody> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof generateCareerPath>>,
+  TError,
+  { data: BodyType<GenerateCareerPathBody> },
+  TContext
+> => {
+  const mutationKey = ["generateCareerPath"];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation &&
+      "mutationKey" in options.mutation &&
+      options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof generateCareerPath>>,
+    { data: BodyType<GenerateCareerPathBody> }
+  > = (props) => {
+    const { data } = props ?? {};
+
+    return generateCareerPath(data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type GenerateCareerPathMutationResult = NonNullable<
+  Awaited<ReturnType<typeof generateCareerPath>>
+>;
+export type GenerateCareerPathMutationBody = BodyType<GenerateCareerPathBody>;
+export type GenerateCareerPathMutationError = ErrorType<unknown>;
+
+/**
+ * @summary Generate a personalized AI career path
+ */
+export const useGenerateCareerPath = <
+  TError = ErrorType<unknown>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof generateCareerPath>>,
+    TError,
+    { data: BodyType<GenerateCareerPathBody> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof generateCareerPath>>,
+  TError,
+  { data: BodyType<GenerateCareerPathBody> },
+  TContext
+> => {
+  return useMutation(getGenerateCareerPathMutationOptions(options));
 };
 
 /**
