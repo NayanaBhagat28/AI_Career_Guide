@@ -1,0 +1,18 @@
+packages:
+  "framer-motion": "For premium page transitions and interactive animations"
+  "recharts": "For rendering beautiful dashboard analytics charts"
+  "react-hook-form": "For robust form state management"
+  "@hookform/resolvers": "For Zod schema validation with react-hook-form"
+  "date-fns": "For formatting application dates nicely"
+  "clsx": "For conditional class names"
+  "tailwind-merge": "For merging Tailwind classes in UI components"
+
+images:
+  - path: "artifacts/career-advisor/public/images/hero-bg.png"
+    description: "Dark professional abstract mesh gradient background with deep indigo and electric blue neon light leaks, highly detailed, sleek modern tech aesthetic"
+    aspect_ratio: "16:9"
+
+notes:
+  - Using generated API hooks from @workspace/api-client-react
+  - Implementing custom fetch hooks for SSE streaming endpoints
+  - The UI is designed as a dark-mode first professional tool

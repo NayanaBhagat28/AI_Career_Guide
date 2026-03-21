@@ -1,15 +1,24 @@
 openapi: 3.1.0
 info:
-  # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: AI Career Advisor API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: profile
+    description: Student profile operations
+  - name: skills
+    description: Skills tracking operations
+  - name: projects
+    description: Projects tracking operations
+  - name: applications
+    description: Internship applications tracking operations
+  - name: openai
+    description: OpenAI AI chat and advisor operations
 paths:
   /healthz:
     get:
@@ -24,6 +33,412 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /profile:
+    get:
+      operationId: getProfile
+      tags: [profile]
+      summary: Get student profile
+      responses:
+        "200":
+          description: Student profile
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Profile"
+    put:
+      operationId: updateProfile
+      tags: [profile]
+      summary: Update student profile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateProfileBody"
+      responses:
+        "200":
+          description: Updated profile
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Profile"
+
+  /skills:
+    get:
+      operationId: listSkills
+      tags: [skills]
+      summary: List all skills
+      responses:
+        "200":
+          description: List of skills
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Skill"
+    post:
+      operationId: createSkill
+      tags: [skills]
+      summary: Add a new skill
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateSkillBody"
+      responses:
+        "201":
+          description: Created skill
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Skill"
+
+  /skills/{id}:
+    put:
+      operationId: updateSkill
+      tags: [skills]
+      summary: Update a skill
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateSkillBody"
+      responses:
+        "200":
+          description: Updated skill
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Skill"
+    delete:
+      operationId: deleteSkill
+      tags: [skills]
+      summary: Delete a skill
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  /projects:
+    get:
+      operationId: listProjects
+      tags: [projects]
+      summary: List all projects
+      responses:
+        "200":
+          description: List of projects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Project"
+    post:
+      operationId: createProject
+      tags: [projects]
+      summary: Add a new project
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateProjectBody"
+      responses:
+        "201":
+          description: Created project
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+
+  /projects/{id}:
+    put:
+      operationId: updateProject
+      tags: [projects]
+      summary: Update a project
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateProjectBody"
+      responses:
+        "200":
+          description: Updated project
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+    delete:
+      operationId: deleteProject
+      tags: [projects]
+      summary: Delete a project
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  /applications:
+    get:
+      operationId: listApplications
+      tags: [applications]
+      summary: List all internship applications
+      responses:
+        "200":
+          description: List of applications
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Application"
+    post:
+      operationId: createApplication
+      tags: [applications]
+      summary: Add a new internship application
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateApplicationBody"
+      responses:
+        "201":
+          description: Created application
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Application"
+
+  /applications/{id}:
+    put:
+      operationId: updateApplication
+      tags: [applications]
+      summary: Update an application
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateApplicationBody"
+      responses:
+        "200":
+          description: Updated application
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Application"
+    delete:
+      operationId: deleteApplication
+      tags: [applications]
+      summary: Delete an application
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  /openai/conversations:
+    get:
+      operationId: listOpenaiConversations
+      tags: [openai]
+      summary: List all conversations
+      responses:
+        "200":
+          description: List of conversations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/OpenaiConversation"
+    post:
+      operationId: createOpenaiConversation
+      tags: [openai]
+      summary: Create a new conversation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateOpenaiConversationBody"
+      responses:
+        "201":
+          description: Created conversation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OpenaiConversation"
+
+  /openai/conversations/{id}:
+    get:
+      operationId: getOpenaiConversation
+      tags: [openai]
+      summary: Get conversation with messages
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Conversation with messages
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OpenaiConversationWithMessages"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OpenaiError"
+    delete:
+      operationId: deleteOpenaiConversation
+      tags: [openai]
+      summary: Delete a conversation
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OpenaiError"
+
+  /openai/conversations/{id}/messages:
+    get:
+      operationId: listOpenaiMessages
+      tags: [openai]
+      summary: List messages in a conversation
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: List of messages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/OpenaiMessage"
+    post:
+      operationId: sendOpenaiMessage
+      tags: [openai]
+      summary: Send a text message and receive a streaming text response
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SendOpenaiMessageBody"
+      responses:
+        "200":
+          description: SSE stream of assistant text chunks
+          content:
+            text/event-stream: {}
+
+  /advisor/resume-feedback:
+    post:
+      operationId: getResumeFeedback
+      tags: [openai]
+      summary: Get AI feedback on resume text
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ResumeFeedbackBody"
+      responses:
+        "200":
+          description: SSE stream of resume feedback
+          content:
+            text/event-stream: {}
+
+  /advisor/skill-gap:
+    post:
+      operationId: getSkillGapAnalysis
+      tags: [openai]
+      summary: Get AI skill gap analysis for target role
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SkillGapBody"
+      responses:
+        "200":
+          description: SSE stream of skill gap analysis
+          content:
+            text/event-stream: {}
+
+  /advisor/recommendations:
+    get:
+      operationId: getInternshipRecommendations
+      tags: [openai]
+      summary: Get AI internship recommendations based on profile
+      responses:
+        "200":
+          description: Internship recommendations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternshipRecommendations"
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +449,390 @@ components:
       required:
         - status
 
+    Profile:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+        school:
+          type: string
+        major:
+          type: string
+        graduationYear:
+          type: integer
+        targetRole:
+          type: string
+        bio:
+          type: string
+        linkedinUrl:
+          type: string
+        githubUrl:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - email
+        - createdAt
+        - updatedAt
+
+    UpdateProfileBody:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        school:
+          type: string
+        major:
+          type: string
+        graduationYear:
+          type: integer
+        targetRole:
+          type: string
+        bio:
+          type: string
+        linkedinUrl:
+          type: string
+        githubUrl:
+          type: string
+
+    Skill:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        category:
+          type: string
+          enum: [technical, soft, language, tool, framework, other]
+        proficiency:
+          type: string
+          enum: [beginner, intermediate, advanced, expert]
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - category
+        - proficiency
+        - createdAt
+
+    CreateSkillBody:
+      type: object
+      properties:
+        name:
+          type: string
+        category:
+          type: string
+          enum: [technical, soft, language, tool, framework, other]
+        proficiency:
+          type: string
+          enum: [beginner, intermediate, advanced, expert]
+      required:
+        - name
+        - category
+        - proficiency
+
+    UpdateSkillBody:
+      type: object
+      properties:
+        name:
+          type: string
+        category:
+          type: string
+          enum: [technical, soft, language, tool, framework, other]
+        proficiency:
+          type: string
+          enum: [beginner, intermediate, advanced, expert]
+
+    Project:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        techStack:
+          type: string
+        githubUrl:
+          type: string
+        liveUrl:
+          type: string
+        status:
+          type: string
+          enum: [in_progress, completed, paused]
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - title
+        - description
+        - status
+        - createdAt
+
+    CreateProjectBody:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        techStack:
+          type: string
+        githubUrl:
+          type: string
+        liveUrl:
+          type: string
+        status:
+          type: string
+          enum: [in_progress, completed, paused]
+      required:
+        - title
+        - description
+        - status
+
+    UpdateProjectBody:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        techStack:
+          type: string
+        githubUrl:
+          type: string
+        liveUrl:
+          type: string
+        status:
+          type: string
+          enum: [in_progress, completed, paused]
+
+    Application:
+      type: object
+      properties:
+        id:
+          type: integer
+        company:
+          type: string
+        role:
+          type: string
+        location:
+          type: string
+        status:
+          type: string
+          enum: [wishlist, applied, phone_screen, interview, offer, rejected, accepted]
+        appliedDate:
+          type: string
+          format: date
+        notes:
+          type: string
+        jobUrl:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - company
+        - role
+        - status
+        - createdAt
+
+    CreateApplicationBody:
+      type: object
+      properties:
+        company:
+          type: string
+        role:
+          type: string
+        location:
+          type: string
+        status:
+          type: string
+          enum: [wishlist, applied, phone_screen, interview, offer, rejected, accepted]
+        appliedDate:
+          type: string
+          format: date
+        notes:
+          type: string
+        jobUrl:
+          type: string
+      required:
+        - company
+        - role
+        - status
+
+    UpdateApplicationBody:
+      type: object
+      properties:
+        company:
+          type: string
+        role:
+          type: string
+        location:
+          type: string
+        status:
+          type: string
+          enum: [wishlist, applied, phone_screen, interview, offer, rejected, accepted]
+        appliedDate:
+          type: string
+          format: date
+        notes:
+          type: string
+        jobUrl:
+          type: string
+
+    OpenaiConversation:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - title
+        - createdAt
+
+    OpenaiMessage:
+      type: object
+      properties:
+        id:
+          type: integer
+        conversationId:
+          type: integer
+        role:
+          type: string
+        content:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - conversationId
+        - role
+        - content
+        - createdAt
+
+    CreateOpenaiConversationBody:
+      type: object
+      properties:
+        title:
+          type: string
+      required:
+        - title
+
+    SendOpenaiMessageBody:
+      type: object
+      properties:
+        content:
+          type: string
+      required:
+        - content
+
+    OpenaiConversationWithMessages:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        messages:
+          type: array
+          items:
+            $ref: "#/components/schemas/OpenaiMessage"
+      required:
+        - id
+        - title
+        - createdAt
+        - messages
+
+    OpenaiError:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
+
+    ResumeFeedbackBody:
+      type: object
+      properties:
+        resumeText:
+          type: string
+        targetRole:
+          type: string
+      required:
+        - resumeText
+
+    SkillGapBody:
+      type: object
+      properties:
+        targetRole:
+          type: string
+        currentSkills:
+          type: array
+          items:
+            type: string
+      required:
+        - targetRole
+        - currentSkills
+
+    InternshipRecommendations:
+      type: object
+      properties:
+        recommendations:
+          type: array
+          items:
+            $ref: "#/components/schemas/InternshipRecommendation"
+      required:
+        - recommendations
+
+    InternshipRecommendation:
+      type: object
+      properties:
+        company:
+          type: string
+        role:
+          type: string
+        matchScore:
+          type: integer
+        reasoning:
+          type: string
+        requiredSkills:
+          type: array
+          items:
+            type: string
+        applicationTip:
+          type: string
+      required:
+        - company
+        - role
+        - matchScore
+        - reasoning
+        - requiredSkills
+        - applicationTip
