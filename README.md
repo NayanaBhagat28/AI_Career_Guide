@@ -79,13 +79,6 @@ npm run dev
 ✔ Scalable architecture  
 
 ---
-
-## 🤝 Contributing
-
-Contributions are welcome!  
-Feel free to fork, improve, and submit a PR 🚀
-
----
 GitHub: https://github.com/NayanaBhagat28  
 
 ---
