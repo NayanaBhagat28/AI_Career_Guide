@@ -66,12 +66,6 @@ npm run dev
 
 ---
 
-## 🌍 Live Demo
-
-Coming Soon  
-
----
-
 ## 🚀 Future Scope
 
 - 🤖 AI Mentor Chatbot  
