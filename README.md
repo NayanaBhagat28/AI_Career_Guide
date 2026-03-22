@@ -1,9 +1,5 @@
 # 🚀 AI Career Guide  
-### *Your Intelligent Career Discovery Partner*
-
-![GitHub repo size](https://img.shields.io/github/repo-size/NayanaBhagat28/AI-Career-Guide?color=purple)  
-![GitHub stars](https://img.shields.io/github/stars/NayanaBhagat28/AI-Career-Guide?style=social)  
-![License](https://img.shields.io/badge/license-MIT-blue)
+### *Your Intelligent Career Discovery Partner
 
 ---
 
@@ -90,27 +86,7 @@ Contributions are welcome!
 Feel free to fork, improve, and submit a PR 🚀
 
 ---
-
-## 📜 License
-
-MIT License  
-
----
-
-## 💙 Author
-
-**Nayana Bhagath**  
 GitHub: https://github.com/NayanaBhagat28  
-
----
-
-## ⭐ Support
-
-If you like this project:
-
-👉 Star the repo  
-👉 Share with others  
-👉 Give feedback  
 
 ---
 
